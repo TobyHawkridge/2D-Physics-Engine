@@ -1,2 +1,12 @@
-.vscode/c_cpp_properties.json
-.vscode/tasks.json
+##################
+# .VSCODE FOLDER #
+##################
+
+.vscode/
+
+#############
+# LIBRARIES #
+#############
+
+glfw3.dll     # these 2 .dll files are necessery for the execution of main.exe but come with raylib library
+libraylib.dll

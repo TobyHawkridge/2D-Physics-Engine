@@ -10,23 +10,25 @@ int main(void)
     InitWindow(screenWidth, screenHeight, "My Test Window");
 
     MaximizeWindow();
-
-    bool isWhite = false;
+    if (IsWindowFullscreen() == false)
+    {
+        ToggleFullscreen();
+    }
 
     while (!WindowShouldClose())
     {
-        if (IsKeyDown(KEY_SPACE))
+        if (IsKeyPressed(KEY_F11))
         {
-            isWhite = true;
+            ToggleFullscreen();
         }
 
         BeginDrawing();
-
-        if (isWhite == true)
+        
+        if (IsKeyDown(KEY_SPACE) == true)
         {
             ClearBackground(WHITE);
         }
-        else
+        if (IsKeyUp(KEY_SPACE) == true)
         {
             ClearBackground(BLACK);
         }

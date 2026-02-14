@@ -5,9 +5,13 @@ int main(void)
 {
     const int screenWidth = 1600;
     const int screenHeight = 1200;
-    bool isWhite = false;
 
+    SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(screenWidth, screenHeight, "My Test Window");
+
+    MaximizeWindow();
+
+    bool isWhite = false;
 
     while (!WindowShouldClose())
     {

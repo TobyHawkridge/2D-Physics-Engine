@@ -6,18 +6,13 @@ int main(void)
 {
     SetTargetFPS(60);
 
-    struct Vector2 {
-        float x;
-        float y;
-    };
-
     const int screenWidth = 1600;
     const int screenHeight = 1200;
 
     Color bg = WHITE;
 
-    Vector2 sqaure1_pos;
-    Vector2 sqaure2_pos;
+    Vector2 square1_pos = { 100.0f, 100.0f };
+    Vector2 square2_pos = { 400.0f, 400.0f };
     Vector2 direction;
     float speed = 800.0f;
 
@@ -52,55 +47,44 @@ int main(void)
             ClearBackground(BLACK);
         }
         
-        // DRAWING A SQUARE
-        if (IsKeyDown(KEY_KP_1))
+        if (IsKeyDown(KEY_ONE))
         {
-            DrawRectangle(sqaure1_pos.x, sqaure1_pos.y, 200, 200, bg);
+            DrawRectangle(square1_pos.x, square1_pos.y, 200, 200, bg);
 
-            if (IsKeyDown(KEY_UP) && (IsKeyDown(KEY_KP_1)) == true)
+            if (IsKeyDown(KEY_UP)) direction.y = -1.0f;
+            if (IsKeyDown(KEY_DOWN)) direction.y = 1.0f;
+            if (IsKeyDown(KEY_RIGHT)) direction.x = 1.0f;
+            if (IsKeyDown(KEY_LEFT)) direction.x = -1.0f;
+
+            if (IsKeyDown(KEY_UP) || IsKeyDown(KEY_DOWN))
             {
-                sqaure1_pos.y -= speed * deltaTime;
+                square1_pos.y += direction.y * speed * deltaTime;
             }
-            if (IsKeyDown(KEY_DOWN) && (IsKeyDown(KEY_KP_1)) == true)
+            if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_LEFT))
             {
-                sqaure1_pos.y += speed * deltaTime;
+                square1_pos.x += direction.x * speed * deltaTime;
             }
-            if (IsKeyDown(KEY_RIGHT) && (IsKeyDown(KEY_KP_1)) == true)
-            {
-                sqaure1_pos.x += speed * deltaTime;
-            }
-            if (IsKeyDown(KEY_LEFT) && (IsKeyDown(KEY_KP_1)) == true)
-            {
-                sqaure1_pos.x -= speed * deltaTime;
-            }
-            
         }
 
-        if (IsKeyDown(KEY_KP_2))
+        if (IsKeyDown(KEY_TWO))
         {
-            DrawRectangle(sqaure2_pos.x, sqaure2_pos.y, 200, 200, bg);
+            DrawRectangle(square2_pos.x, square2_pos.y, 200, 200, bg);
 
-            if (IsKeyDown(KEY_UP) && (IsKeyDown(KEY_KP_2)) == true)
+            if (IsKeyDown(KEY_UP)) direction.y = -1.0f;
+            if (IsKeyDown(KEY_DOWN)) direction.y = 1.0f;
+            if (IsKeyDown(KEY_RIGHT)) direction.x = 1.0f;
+            if (IsKeyDown(KEY_LEFT)) direction.x = -1.0f;
+
+            if (IsKeyDown(KEY_UP) || IsKeyDown(KEY_DOWN))
             {
-                sqaure2_pos.y -= speed * deltaTime;
+                square2_pos.y += direction.y * speed * deltaTime;
             }
-            if (IsKeyDown(KEY_DOWN) && (IsKeyDown(KEY_KP_2)) == true)
+            if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_LEFT))
             {
-                sqaure2_pos.y += speed * deltaTime;
+                square2_pos.x += direction.x * speed * deltaTime;
             }
-            if (IsKeyDown(KEY_RIGHT) && (IsKeyDown(KEY_KP_2)) == true)
-            {
-                sqaure2_pos.x += speed * deltaTime;
-            }
-            if (IsKeyDown(KEY_LEFT) && (IsKeyDown(KEY_KP_2)) == true)
-            {
-                sqaure2_pos.x -= speed * deltaTime;
-            }
-            
         }
-        
         EndDrawing();
     }
-
     return 0;
 }

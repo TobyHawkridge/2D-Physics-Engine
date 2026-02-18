@@ -1,11 +1,25 @@
 #include "raylib.h"
 #include <stdbool.h>
+#include <stdio.h>
 
 int main(void)
 {
     SetTargetFPS(60);
+
+    struct Vector2 {
+        float x;
+        float y;
+    };
+
     const int screenWidth = 1600;
     const int screenHeight = 1200;
+
+    Color bg = WHITE;
+
+    Vector2 sqaure1_pos;
+    Vector2 sqaure2_pos;
+    Vector2 direction;
+    float speed = 800.0f;
 
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(screenWidth, screenHeight, "My Test Window");
@@ -15,15 +29,6 @@ int main(void)
     {
         ToggleFullscreen();
     }
-
-    Color bg = WHITE;
-    float square_pos_x = 400.0f;
-    float square_pos_y = 400.0f;
-    float circle_pos_x = 400.0f;
-    float circle_pos_y = 400.0f;
-    float speed = 800.0f;
-    bool S = false;
-    bool C = false;
 
     while (!WindowShouldClose())
     {
@@ -35,7 +40,7 @@ int main(void)
         }
 
         BeginDrawing();
-        // CHANGING THE BACKGROUND
+        
         if (IsKeyDown(KEY_BACKSPACE) == true)
         {
             bg = BLACK;
@@ -48,60 +53,52 @@ int main(void)
         }
         
         // DRAWING A SQUARE
-        if (IsKeyDown(KEY_S))
+        if (IsKeyDown(KEY_KP_1))
         {
-            S = true;
+            DrawRectangle(sqaure1_pos.x, sqaure1_pos.y, 200, 200, bg);
 
-            DrawRectangle(square_pos_x, square_pos_y, 200, 200, bg);
-
-            if (IsKeyDown(KEY_UP) && S == true)
+            if (IsKeyDown(KEY_UP) && (IsKeyDown(KEY_KP_1)) == true)
             {
-                square_pos_y -= speed * deltaTime;
+                sqaure1_pos.y -= speed * deltaTime;
             }
-            if (IsKeyDown(KEY_DOWN) && S == true)
+            if (IsKeyDown(KEY_DOWN) && (IsKeyDown(KEY_KP_1)) == true)
             {
-                square_pos_y += speed * deltaTime;
+                sqaure1_pos.y += speed * deltaTime;
             }
-            if (IsKeyDown(KEY_RIGHT) && S == true)
+            if (IsKeyDown(KEY_RIGHT) && (IsKeyDown(KEY_KP_1)) == true)
             {
-                square_pos_x += speed * deltaTime;
+                sqaure1_pos.x += speed * deltaTime;
             }
-            if (IsKeyDown(KEY_LEFT) && S == true)
+            if (IsKeyDown(KEY_LEFT) && (IsKeyDown(KEY_KP_1)) == true)
             {
-                square_pos_x -= speed * deltaTime;
+                sqaure1_pos.x -= speed * deltaTime;
             }
             
         }
-        else
-            S = false;
 
-        if (IsKeyDown(KEY_C))
+        if (IsKeyDown(KEY_KP_2))
         {
-            C = true;
+            DrawRectangle(sqaure2_pos.x, sqaure2_pos.y, 200, 200, bg);
 
-            DrawCircle(circle_pos_x, circle_pos_y, 200, bg);
-
-            if (IsKeyDown(KEY_UP) && C == true)
+            if (IsKeyDown(KEY_UP) && (IsKeyDown(KEY_KP_2)) == true)
             {
-                circle_pos_y -= speed * deltaTime;
+                sqaure2_pos.y -= speed * deltaTime;
             }
-            if (IsKeyDown(KEY_DOWN) && C == true)
+            if (IsKeyDown(KEY_DOWN) && (IsKeyDown(KEY_KP_2)) == true)
             {
-                circle_pos_y += speed * deltaTime;
+                sqaure2_pos.y += speed * deltaTime;
             }
-            if (IsKeyDown(KEY_RIGHT) && C == true)
+            if (IsKeyDown(KEY_RIGHT) && (IsKeyDown(KEY_KP_2)) == true)
             {
-                circle_pos_x += speed * deltaTime;
+                sqaure2_pos.x += speed * deltaTime;
             }
-            if (IsKeyDown(KEY_LEFT) && C == true)
+            if (IsKeyDown(KEY_LEFT) && (IsKeyDown(KEY_KP_2)) == true)
             {
-                circle_pos_x -= speed * deltaTime;
+                sqaure2_pos.x -= speed * deltaTime;
             }
             
         }
-        else
-            C = false;
-
+        
         EndDrawing();
     }
 
